@@ -1,0 +1,23 @@
+services:
+  agent-orchestrator:
+    build: .
+    image: agentic-mcp-agent-orchestrator
+    container_name: mcp-agent-loop
+    command: ["python", "src/agent_orchestrator.py"]
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OLLAMA_BASE_URL=http://172.20.0.1:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - mcp-server
+
+  mcp-server:
+    build: .
+    image: agentic-mcp-mcp-server
+    container_name: mcp-tool-server
+    command: ["python", "src/server_tools.py"]
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentic-mcp"
+version = "0.1.0"
+description = "Containerized multi-agent development environment with LangGraph and MCP SDK"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp<2",
+    "langchain-ollama",
+    "langgraph",
+    "langchain-mcp-adapters"
+]
