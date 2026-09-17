@@ -6,7 +6,7 @@ This project demonstrates how to decouple an AI agent's "brain" (LLM reasoning) 
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 The system is split into two independent Docker containers communicating over a custom bridge network:
 
@@ -38,7 +38,7 @@ The system is split into two independent Docker containers communicating over a 
 
 ---
 
-## 🚀 Prerequisites
+## Prerequisites
 
 Before getting started, ensure you have the following installed on your host machine:
 
@@ -47,7 +47,7 @@ Before getting started, ensure you have the following installed on your host mac
 
 ---
 
-## 📥 Installation & Setup
+## Installation & Setup
 
 ### 1. Clone the Repository
 
@@ -95,7 +95,7 @@ docker compose logs -f agent-orchestrator
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 agentic-mcp/
@@ -110,7 +110,7 @@ agentic-mcp/
 
 ---
 
-## 💡 How It Works
+## How It Works
 
 1. **Initialization:** The orchestrator boots up, connects to Ollama on the host machine, and opens an SSE connection to the MCP tool server (`http://mcp-server:8000/sse`).
 2. **Tool Discovery:** The orchestrator runs an initialization handshake via `session.initialize()` and automatically maps available MCP tools into LangChain-compatible schemas using `load_mcp_tools`.
