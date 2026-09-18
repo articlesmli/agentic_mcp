@@ -1,6 +1,6 @@
 # Local Agentic MCP (Model Context Protocol) with LangGraph & Ollama
 
-A modular, privacy-first local AI agent framework that runs **100% on your machine** using Docker, Ollama, LangGraph, and the Model Context Protocol (MCP).
+A modular, privacy-first local AI agent framework that runs **100% on the local machine** using Docker, Ollama, LangGraph, and the Model Context Protocol (MCP).
 
 This project demonstrates how to decouple an AI agent's "brain" (LLM reasoning) from its "hands" (tools) using standardized MCP communication over Server-Sent Events (SSE).
 
@@ -12,7 +12,7 @@ The system is split into two independent Docker containers communicating over a 
 
 1. **`mcp-tool-server`**: A lightweight microservice that securely exposes custom local capabilities (e.g., reading and searching local logs via `analyze_local_logs`) using the Model Context Protocol.
 2. **`mcp-agent-loop` (Orchestrator)**: A Python script utilizing **LangChain**, **LangGraph**, and **LangChain MCP Adapters** to dynamically discover tools, process user requests, and orchestrate local LLM calls.
-3. **Ollama**: Runs locally on your host machine providing tool-capable intelligence (via `llama3.1`).
+3. **Ollama**: Runs locally on the host machine providing tool-capable intelligence (via `llama3.1`).
 
 ```text
 +-------------------------------------------------------+
@@ -40,7 +40,7 @@ The system is split into two independent Docker containers communicating over a 
 
 ## Prerequisites
 
-Before getting started, ensure you have the following installed on your host machine:
+Before getting started, ensure you have the following installed on the host machine:
 
 * [Docker & Docker Compose](https://docs.docker.com/get-docker/)
 * [Ollama](https://ollama.com/) running locally
@@ -52,7 +52,7 @@ Before getting started, ensure you have the following installed on your host mac
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/agentic-mcp.git
+git clone https://github.com/the-username/agentic-mcp.git
 cd agentic-mcp
 
 ```
@@ -68,14 +68,14 @@ ollama pull llama3.1
 
 ### 3. Configure Docker Network Gateway (Linux Setup)
 
-On Linux, custom Docker bridge networks require an explicit gateway IP to talk to host services like Ollama. Find your Docker gateway IP:
+On Linux, custom Docker bridge networks require an explicit gateway IP to talk to host services like Ollama. Find the Docker gateway IP:
 
 ```bash
 docker network inspect agentic-mcp_default --format='{{range .IPAM.Config}}{{.Gateway}}{{end}}'
 
 ```
 
-*(If it returns `172.20.0.1`, ensure your `src/agent_orchestrator.py` or environment variable points to `[http://172.20.0.1:11434](http://172.20.0.1:11434)`).*
+*(If it returns `172.20.0.1`, ensure `src/agent_orchestrator.py` or environment variable points to `[http://172.20.0.1:11434](http://172.20.0.1:11434)`).*
 
 ### 4. Build and Run the Containers
 
