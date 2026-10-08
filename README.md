@@ -104,7 +104,6 @@ docker compose logs -f agent-orchestrator
 
 ```text
 agentic-mcp/
-<<<<<<< HEAD
 ├── Dockerfile                  # Container instructions for orchestrator
 ├── docker-compose.yml          # Multi-container orchestration setup
 ├── pyproject.toml              # Python project dependencies
@@ -127,7 +126,6 @@ agentic-mcp/
 ├── Dockerfile                      # Multi-stage security-hardened container config
 ├── logs.docx                       # Supplementary project logs data
 └── pyproject.toml                  # Python package configuration
->>>>>>> 8289e8d (Fix MCP stdio test freeze with conditional transport and filter Python 3.11 anyio warnings)
 
 ```
 
