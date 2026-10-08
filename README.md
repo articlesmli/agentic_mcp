@@ -53,9 +53,6 @@ Before getting started, ensure you have the following installed on the host mach
 
 ```bash
 
-git clone https://github.com/the-username/agentic-mcp.git
-cd agentic-mcp
-=======
 git clone https://github.com/your-username/agentic_mcp.git
 cd agentic_mcp
 
