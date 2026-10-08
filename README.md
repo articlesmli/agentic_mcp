@@ -52,13 +52,13 @@ Before getting started, ensure you have the following installed on the host mach
 ### 1. Clone the Repository
 
 ```bash
-<<<<<<< HEAD
+
 git clone https://github.com/the-username/agentic-mcp.git
 cd agentic-mcp
 =======
 git clone https://github.com/your-username/agentic_mcp.git
 cd agentic_mcp
->>>>>>> 8289e8d (Fix MCP stdio test freeze with conditional transport and filter Python 3.11 anyio warnings)
+
 
 ```
 
