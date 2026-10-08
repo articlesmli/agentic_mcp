@@ -14,3 +14,12 @@ dependencies = [
     "langgraph",
     "langchain-mcp-adapters"
 ]
+
+[flake8]
+exclude = 
+    .git,
+    __pycache__,
+    .venv_mcp,
+    build,
+    dist
+max-line-length = 100
