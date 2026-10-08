@@ -16,16 +16,11 @@ dependencies = [
 ]
 
 [flake8]
-exclude = 
-    .git,
-    __pycache__,
-    .venv_mcp,
-    build,
-    dist
-max-line-length = 100
-
-[tool.pytest.ini_options]
-filterwarnings = [
-    "ignore:Passing 'msg' argument to Task.cancel.* is deprecated:DeprecationWarning",
-    "ignore:Passing 'msg' argument to Future.cancel.* is deprecated:DeprecationWarning"
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv_mcp",
+    "build",
+    "dist"
 ]
+max-line-length = 100
