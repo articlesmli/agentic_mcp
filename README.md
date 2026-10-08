@@ -100,7 +100,7 @@ docker compose logs -f agent-orchestrator
 ## Project Structure
 
 ```text
-agentic-mcp/
+agentic_mcp/
 ├── Dockerfile                  # Container instructions for orchestrator
 ├── docker-compose.yml          # Multi-container orchestration setup
 ├── pyproject.toml              # Python project dependencies
