@@ -26,6 +26,13 @@ def analyze_local_logs(log_path: str, keyword: str) -> str:
     return f"Found {len(matches)} matching lines for '{keyword}': \n" + "\n".join(matches[:10])
 
 if __name__ == "__main__":
-    print("Starting MCP Tool Server via Uvicorn on port 8000...")
-    app = mcp.sse_app()
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # If running in Docker or explicitly requested, use SSE. Otherwise, use stdio for tests.
+    transport = os.getenv("MCP_TRANSPORT", "stdio")
+    
+    if transport == "sse":
+        print("Starting MCP Tool Server via Uvicorn (SSE) on port 8000...")
+        app = mcp.sse_app()
+        uvicorn.run(app, host="0.0.0.0", port=8000)
+    else:
+        # FastMCP's built-in stdio runner
+        mcp.run(transport="stdio")

@@ -52,8 +52,13 @@ Before getting started, ensure you have the following installed on the host mach
 ### 1. Clone the Repository
 
 ```bash
+<<<<<<< HEAD
 git clone https://github.com/the-username/agentic-mcp.git
 cd agentic-mcp
+=======
+git clone https://github.com/your-username/agentic_mcp.git
+cd agentic_mcp
+>>>>>>> 8289e8d (Fix MCP stdio test freeze with conditional transport and filter Python 3.11 anyio warnings)
 
 ```
 
@@ -99,19 +104,47 @@ docker compose logs -f agent-orchestrator
 
 ```text
 agentic-mcp/
+<<<<<<< HEAD
 ├── Dockerfile                  # Container instructions for orchestrator
 ├── docker-compose.yml          # Multi-container orchestration setup
 ├── pyproject.toml              # Python project dependencies
 └── src/
     ├── agent_orchestrator.py   # LangGraph React Agent loop and MCP client
     └── server_tools.py         # MCP tool definitions and server logic
+=======
+├── .github/
+│   └── workflows/
+│       ├── cd.yml                  # Secure enterprise registry image promotion
+│       └── ci.yml                  # Linting & async pytest pipelines
+├── src/
+│   ├── agent_orchestrator.py       # LangGraph React Agent loop & MCP client
+│   └── server_tools.py             # FastMCP tool server
+├── tests/
+│   ├── integration_mcp/
+│   │   └── test_protocol.py        # Asynchronous MCP protocol contract tests
+│   └── unit/                       # Deterministic unit tests
+├── docker-compose.yml              # Multi-container orchestration setup
+├── Dockerfile                      # Multi-stage security-hardened container config
+├── logs.docx                       # Supplementary project logs data
+└── pyproject.toml                  # Python package configuration
+>>>>>>> 8289e8d (Fix MCP stdio test freeze with conditional transport and filter Python 3.11 anyio warnings)
 
 ```
 
 ---
+
+## CI/CD Pipelines
+
+CI (ci.yml): Automatically triggers on pushes and pull requests to main or dev, running Flake8 linting, core unit tests, and asynchronous MCP protocol integration tests.
+
+CD (cd.yml): Automatically triggers on semantic version tag pushes (v*.*.*), building and pushing secure multi-stage Docker images to your enterprise container registry.
 
 ## How It Works
 
 1. **Initialisation:** The orchestrator boots up, connects to Ollama on the host machine, and opens an SSE connection to the MCP tool server (`http://mcp-server:8000/sse`).
 2. **Tool Discovery:** The orchestrator runs an initialisation handshake via `session.initialize()` and automatically maps available MCP tools into LangChain-compatible schemas using `load_mcp_tools`.
 3. **Execution:** When given a prompt (e.g., *"Can you check the logs at /app/src/server_tools.py for the keyword 'def'?"*), the LangGraph React agent evaluates the available tools, generates a structured tool call, retrieves the matching log lines from the tool server, and formulates a final, intelligent response.
+
+
+
+> **Note:** This project uses a custom virtual environment named `.venv-mcp`. Activate it with: `source .venv-mcp/bin/activate`

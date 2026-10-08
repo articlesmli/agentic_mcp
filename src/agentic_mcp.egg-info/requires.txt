@@ -1,0 +1,4 @@
+mcp<2
+langchain-ollama
+langgraph
+langchain-mcp-adapters

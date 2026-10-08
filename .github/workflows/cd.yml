@@ -1,0 +1,35 @@
+name: Continuous Delivery - Secure Image Promotion
+
+on:
+  push:
+    tags:
+      - 'v*.*.*' # Triggers only on official semantic version releases
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Authenticate to Enterprise Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.ENTERPRISE_REGISTRY_URL }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build Secure, Multi-Stage Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ${{ secrets.ENTERPRISE_REGISTRY_URL }}/agentic-mcp:${{ github.ref_name }}
+            ${{ secrets.ENTERPRISE_REGISTRY_URL }}/agentic-mcp:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
