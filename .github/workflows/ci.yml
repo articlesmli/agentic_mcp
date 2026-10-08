@@ -26,9 +26,9 @@ jobs:
 
       - name: Code Quality Linting (Flake8 & Mypy)
         run: |
-          # Ensure strict adherence to typing for Pydantic tool schemas
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          # mypy . --ignore-missing-imports
+          # Ensure strict adherence to typing for Pydantic tool schemas, targeting only project source code
+          flake8 src/ tests/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          # mypy src/ --ignore-missing-imports
 
       - name: Execute Deterministic Unit Tests
         run: |
